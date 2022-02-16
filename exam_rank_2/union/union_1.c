@@ -70,6 +70,7 @@ int	main(int argc, char **argv)
 	while (ret_str[i] != '\0')
 		i++;
 	add_first_appeared_char(&ret_str, argv[2]);
+	ret_str[i] != '\0';
 	ft_putstr(ret_str);
 	free (ret_str);
 	return (0);
