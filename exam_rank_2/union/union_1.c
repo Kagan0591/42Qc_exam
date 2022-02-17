@@ -12,6 +12,7 @@ void	ft_putstr(char *str)
 		write(1, &str[i], 1);
 		i++;
 	}
+	write(1, "\n", 1);
 }
 
 bool	ft_strchr(char *str, char c)
@@ -21,29 +22,32 @@ bool	ft_strchr(char *str, char c)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		i++;
 		if (str[i] == c)
 			return (true);
+		i++;
 	}
 	return (false);
 }
 
-void	add_first_appeared_char(char **final_list_of_char, char *str)
+char	*add_first_appeared_char(char *final_list_of_char, char *str)
 {
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
+	while (final_list_of_char[j] != '\0')
+		j++;
 	while (str[i] != '\0')
 	{
-		if (ft_strchr((*final_list_of_char), str[i]) == false)
+		if (ft_strchr(final_list_of_char, str[i]) == false)
 		{
-			(*final_list_of_char)[j] = str[i];
+			final_list_of_char[j] = str[i];
 			j++;
 		}
 	i++;
 	}
+	return (final_list_of_char);
 }
 
 int		ft_strlen(char *str)
@@ -58,21 +62,15 @@ int		ft_strlen(char *str)
 
 int	main(int argc, char **argv)
 {
-	int		i;
 	char	*ret_str;
 
-	i = 0;
-	ret_str = malloc(sizeof(char) * (ft_strlen(argv[1]) + ft_strlen(argv[2])));
 	if (argc != 3)
 		return (write(1, "\n", 1));
-	add_first_appeared_char(&ret_str, argv[1]);
+	ret_str = malloc(sizeof(char) * (ft_strlen(argv[1]) + ft_strlen(argv[2] + 1)));
+	add_first_appeared_char(ret_str, argv[1]);
+	//ft_putstr(ret_str);
+	add_first_appeared_char(ret_str, argv[2]);
 	ft_putstr(ret_str);
-	while (ret_str[i] != '\0')
-		i++;
-	add_first_appeared_char(&ret_str, argv[2]);
-	ret_str[i] != '\0';
-	ft_putstr(ret_str);
-	free (ret_str);
 	return (0);
 
 
