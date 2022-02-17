@@ -29,6 +29,16 @@ bool	ft_strchr(char *str, char c)
 	return (false);
 }
 
+int		ft_strlen(char *str)
+{
+	int		count;
+
+	count = 0;
+	while (str[count] != '\0')
+		count++;
+	return (count);
+}
+
 char	*add_first_appeared_char(char *final_list_of_char, char *str)
 {
 	int		i;
@@ -50,16 +60,6 @@ char	*add_first_appeared_char(char *final_list_of_char, char *str)
 	return (final_list_of_char);
 }
 
-int		ft_strlen(char *str)
-{
-	int		count;
-
-	count = 0;
-	while (str[count] != '\0')
-		count++;
-	return (count);
-}
-
 int	main(int argc, char **argv)
 {
 	char	*ret_str;
@@ -68,7 +68,6 @@ int	main(int argc, char **argv)
 		return (write(1, "\n", 1));
 	ret_str = malloc(sizeof(char) * (ft_strlen(argv[1]) + ft_strlen(argv[2] + 1)));
 	add_first_appeared_char(ret_str, argv[1]);
-	//ft_putstr(ret_str);
 	add_first_appeared_char(ret_str, argv[2]);
 	ft_putstr(ret_str);
 	return (0);
